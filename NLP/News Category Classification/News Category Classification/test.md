@@ -1,1 +1,0 @@
-hello, this file is to test the subfolder function.
