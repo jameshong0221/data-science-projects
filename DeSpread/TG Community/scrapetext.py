@@ -11,9 +11,9 @@ with TelegramClient(username, api_id, api_hash) as client:
     for message in client.iter_messages("https://t.me/AptosKR"):
         print(message.sender_id, ':', message.text, message.date)
         data.append([message.sender_id, message.text, message.date, message.id, message.post_author,
-                     message.views, message.peer_id.channel_id ])
+                     message.views, message.peer_id.channel_id])
 
 df = pd.DataFrame(data, columns = ["message.sender_id", "message.text"," message.date", "message.id",  
                                    "message.post_author", "message.views", "message.peer_id.channel_id"])
 
-df.to_csv('aptoskorea.csv', encoding = 'utf-8')
+df.to_csv('aptoskorea.csv')
