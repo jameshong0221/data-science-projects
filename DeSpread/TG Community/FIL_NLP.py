@@ -20,5 +20,5 @@ df.rename({" message.date":"message.date"}, axis=1, inplace=True)
 # Sort values reference "https://sparkbyexamples.com/pandas/pandas-sort-by-column-values-in-dataframe/?expand_article=1"
 #Drop rows with Nans. Refer to previous projects
 
-df.dropna(subset = ['message.text'], inplace = True)
+#df.dropna(subset = ['message.text'], inplace = True) -- The null entries represent "유저가 입장했습니다"
 

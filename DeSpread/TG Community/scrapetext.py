@@ -7,8 +7,10 @@ phone = '+821049477961'
 username = 'Colajames'
 
 data = []
+
+
 with TelegramClient(username, api_id, api_hash) as client:
-    for message in client.iter_messages("https://t.me/filecoinkor"):
+    for message in client.iter_messages("https://t.me/+if_oJiyflv4yOTc1"):
         print(message.sender_id, ':', message.text, message.date)
         data.append([message.sender_id, message.text, message.date, message.id, message.post_author,
                      message.views, message.peer_id.channel_id])
@@ -16,4 +18,7 @@ with TelegramClient(username, api_id, api_hash) as client:
 df = pd.DataFrame(data, columns = ["message.sender_id", "message.text", "message.date", "message.id",  
                                    "message.post_author", "message.views", "message.peer_id.channel_id"])
 
-df.to_csv('filecoinkorea.csv')
+df.to_csv('testingjoinhistory.csv')
+
+df.head()
+df.info()
