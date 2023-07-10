@@ -5,8 +5,8 @@ from googletrans import Translator
 import openai
 
 # Configure the Telegram bot token and OpenAI API token
-TELEGRAM_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
-OPENAI_API_TOKEN = 'YOUR_OPENAI_API_TOKEN'
+TELEGRAM_TOKEN = '6336119344:AAEizmEg2VplsJkz4kvj8c5Vn459jCcZSvA'
+OPENAI_API_TOKEN = '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'
 
 # Configure the language for translation
 TRANSLATE_TO_LANG = 'en'  # Translate to English
