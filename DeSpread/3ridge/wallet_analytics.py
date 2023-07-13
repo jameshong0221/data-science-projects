@@ -1,9 +1,15 @@
 import pandas as pd
 import requests
+from pandas_profiling import ProfileReport
 
+# Load 3ridge data
 df = pd.read_csv("3ridge-web.users.csv")
 df.info()
 df.head()
+
+# Exploratory Analysis - Data profiling report
+profile = ProfileReport(df)
+profile.to_notebook_iframe()
 
 df_wallet_0 = df["wallets[0].address"]
 df_wallet_1 = df["wallets[1].address"]
