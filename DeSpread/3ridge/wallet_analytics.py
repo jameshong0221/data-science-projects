@@ -8,7 +8,7 @@ api_url = "https://api.etherscan.io/api"
 api_key = "WDP81QQFM85H8DN132FCJW8TFJF92YR9XG"
 
 # Load 3ridge data
-df = pd.read_csv("3ridge_user_data.csv")
+df = pd.read_csv("user_data.csv")
 df.info()
 df.head(2)
 for abc in df["wallets[0].address"]:
