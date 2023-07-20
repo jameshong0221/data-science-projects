@@ -11,11 +11,15 @@ api_key = "WDP81QQFM85H8DN132FCJW8TFJF92YR9XG"
 df = pd.read_csv("user_data.csv")
 df.info()
 df.head(2)
-for abc in df["wallets[0].address"]:
+
+
+def get_balance(wallet_address, chain):
+    
+for address in df["wallets[0].address"]:
+    if i == 5:
+        break
     print(abc)
-# Exploratory Analysis - Data profiling report
-#profile = ProfileReport(df)
-#profile.to_notebook_iframe()
+    i += 1
 
 df_wallet_0 = df["wallets[0].address"]
 
@@ -90,7 +94,7 @@ for address in wallet_addresses:
         for tx in txs ])
 
 # Transaction count for each address
-(for address in wallet_addresses:
+for address in wallet_addresses:
     # Construct the API request URL
     params = {
         "module": "proxy",
@@ -109,4 +113,4 @@ for address in wallet_addresses:
         # Print the balance
         print(f"Address: {address}")
         print(f"Tx Count: {tx_count} ")
-        print("---"))
+        print("---")
