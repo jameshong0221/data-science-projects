@@ -1,25 +1,68 @@
 import pandas as pd
+import numpy as np
 import requests
 import json
-#from pandas_profiling import ProfileReport
 
 # Etherscan API endpoint and API key
-api_url = "https://api.etherscan.io/api"
+api_url_evm = "https://api.etherscan.io/api"
 api_key = "WDP81QQFM85H8DN132FCJW8TFJF92YR9XG"
+
+# Hiro API endpoint
+api_url_stx = "https://api.mainnet.hiro.so/extended/v1/" + stx_address + "/SP37SE3P6RHC8FKDZC46E8C2A39S7ZSFKS569AJV4/transactions"
 
 # Load 3ridge data
 df = pd.read_csv("user_data.csv")
-df.info()
-df.head(2)
+df['wallets[0].address']
 
+tx_cnt = []
 
-def get_balance(wallet_address, chain):
+for wallet00 in df['wallets[0].address']:
     
-for address in df["wallets[0].address"]:
-    if i == 5:
-        break
-    print(abc)
-    i += 1
+    # EVM
+    if wallet00.startswith('0x'):
+        params = {
+        "module": "account",
+        "action": "txlist",
+        "address": address,
+        "startblock": 0,
+        "endblock": 99999999,
+        "page": 1,
+        "offset": 10,
+        "sort": 'asc',
+        "apikey": api_key,
+        }
+        response = requests.get(api_url_evm, params=params)
+        data = response.json()
+        tx_cnt.append(len(data['result']))    # Tx count
+
+    # Hiro
+    elif wallet00.startswith('SP'):
+        params = {
+        "limit": 50,
+        "offset": 0,
+        "until_block" :999999
+        }
+        response = requests.get(api_url_stx, params=params)
+        data = response.json()
+        tx_cnt.append(data['total']) # Tx count
+    
+    else:
+        continue
+
+
+response = requests.get(api_url_stx, params=params)
+data = response.json()
+
+print(data.keys())
+data['total']
+print(data['results'])
+
+print(data['results'][0].keys())
+print(data['results'][1].keys())
+print(data['total']) #transaction count
+print(data['results'][0]['event_count'])
+
+
 
 df_wallet_0 = df["wallets[0].address"]
 
@@ -71,6 +114,7 @@ for address in wallet_addresses:
 
 # Return transaction history of wallet address
 
+
 data = []
 
 for address in wallet_addresses:
@@ -78,7 +122,7 @@ for address in wallet_addresses:
     params = {
         "module": "account",
         "action": "txlist",
-        "address": address,
+        "address": "0x5320dE0613d96B4177dd0302D04074eAc37F7472",
         "startblock": 0,
         "endblock": 99999999,
         "page": 1,
@@ -114,3 +158,24 @@ for address in wallet_addresses:
         print(f"Address: {address}")
         print(f"Tx Count: {tx_count} ")
         print("---")
+
+
+api_url_evm = "https://api.etherscan.io/api"
+api_key = "WDP81QQFM85H8DN132FCJW8TFJF92YR9XG"
+
+params = {
+        "module": "account",
+        "action": "txlist",
+        "address": address,
+        "startblock": 0,
+        "endblock": 99999999,
+        "page": 1,
+        "offset": 10,
+        "sort": 'asc',
+        "apikey": api_key,
+    }
+
+response = requests.get(api_url_evm, params=params)
+data = response.json()
+len(data['result'])
+
